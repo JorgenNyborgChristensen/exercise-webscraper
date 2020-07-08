@@ -33,9 +33,9 @@ for url in urls:
     soup = BeautifulSoup(content)
     for a in soup.findAll('div', attrs={'class':'ExResult-cell ExResult-cell--nameEtc'}):
         #print(a)
-        exercise = a.find('h3', attrs={'class':'ExHeading ExResult-resultsHeading'})
-        muscle = a.find('div', attrs={'class':'ExResult-details ExResult-muscleTargeted'})
-        equipment = a.find('div', attrs={'class' : 'ExResult-details ExResult-equipmentType'})
+        exercise = a.find('h3', attrs={'class':'ExHeading ExResult-resultsHeading'}).a
+        muscle = a.find('div', attrs={'class':'ExResult-details ExResult-muscleTargeted'}).a
+        equipment = a.find('div', attrs={'class' : 'ExResult-details ExResult-equipmentType'}).a
         f.writerow([muscle.get_text(strip=True), exercise.get_text(strip=True), equipment.get_text(strip=True)])
         
 driver.close()
